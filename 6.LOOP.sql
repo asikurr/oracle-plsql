@@ -1,0 +1,33 @@
+DECLARE 
+V_COUNT NUMBER(2) := 1;
+
+BEGIN
+LOOP
+    DBMS_OUTPUT.PUT_LINE ('Inside loop:  COUNT = ' || V_COUNT);
+    V_COUNT := V_COUNT + 1;
+    
+    EXIT WHEN V_COUNT > 20;
+  END LOOP;
+END;
+/
+
+DECLARE 
+V_COUNT NUMBER(2) := 1;
+
+BEGIN
+WHILE V_COUNT <= 50 LOOP
+    DBMS_OUTPUT.PUT_LINE ('Inside loop:  COUNT = ' || V_COUNT);
+    V_COUNT := V_COUNT + 1;
+    
+   -- EXIT WHEN V_COUNT > 20;
+  END LOOP;
+END;
+/
+
+DECLARE 
+V_NUM NUMBER(5) := 1;
+BEGIN 
+FOR I IN 50..100 LOOP
+DBMS_OUTPUT.PUT_LINE ('Inside loop:  COUNT = ' || I);
+END LOOP;
+END;

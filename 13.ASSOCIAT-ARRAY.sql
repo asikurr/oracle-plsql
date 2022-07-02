@@ -81,5 +81,42 @@ BEGIN
 END;
 /
 
+------------------------------------------------------
+create table employees_salary_history as select * from employees where 1 = 2;
+alter table employees_salary_history add insert_date date;
+select * from employees_salary_history;
+---------------------------------------------------------------
+/
 
-select * from employees;
+declare 
+type e_list is table of employees_salary_history%rowtype index by PLS_INTEGER;
+r_emp e_list;
+idx pls_integer;
+
+begin 
+    
+    for x in 100..110 loop
+        select e.* , '02-JUL-2022' into r_emp(x) from employees e where employee_id = x;
+    end loop;
+    
+    idx := r_emp.first;
+    
+    while idx is not null loop
+        r_emp(idx).salary := r_emp(idx).salary + r_emp(idx).salary * 2;
+        insert into employees_salary_history values r_emp(idx);
+        dbms_output.put_line('First Name is : ' || r_emp(idx).first_name || ' and salary is history table ' ||r_emp(idx).salary  || 'idx '|| idx);
+        idx := r_emp.next(idx);
+    end loop;
+
+end;
+
+
+
+
+
+
+
+
+
+
+select first_name, e.* from employees e;

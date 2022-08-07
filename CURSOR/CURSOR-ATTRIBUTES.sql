@@ -17,8 +17,6 @@ fetch e_info into r_emp;
 DBMS_OUTPUT.PUT_LINE(e_info%rowcount);
 close e_info;
 
-
-
 for i in e_info loop
  CONTINUE WHEN e_info%notfound or e_info%rowcount > 5;
     DBMS_OUTPUT.PUT_LINE(e_info%rowcount ||' '|| i.first_name ||' '|| i.last_name );
@@ -27,3 +25,4 @@ end loop;
 
 end; 
 /
+
